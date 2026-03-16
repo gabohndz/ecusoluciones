@@ -3,141 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="EcuSoluciones: Consultoría económica y soluciones de conectividad empresarial en Ecuador. Optimizamos tu rentabilidad.">
-    <title>EcuSoluciones - Consultoría y Conectividad Empresarial</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>EcuSoluciones | Internet y Planes para tu Negocio</title>
+    <meta name="description" content="Te ayudamos a que tu negocio crezca con el mejor internet y planes de celular en Ecuador. Sencillo y sin vueltas.">
+    
+    <meta property="og:title" content="EcuSoluciones - Tu negocio mejor conectado">
+    <meta property="og:description" content="Ahorra dinero y trabaja mejor con nuestras soluciones de internet y planes.">
+    <meta property="og:image" content="https://i.imgur.com/wGqv4OR.jpeg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #1a232f;    /* Azul Marino Corporativo */
-            --secondary: #ffcc00;  /* Dorado de Éxito */
-            --accent: #E60000;     /* Rojo de Acción (Claro) */
-            --light: #f4f7f6;
+            --primary: #1a232f;    /* Azul Serio */
+            --secondary: #ffcc00;  /* Amarillo Energía */
+            --accent: #E60000;     /* Rojo Claro */
+            --bg-light: #f1f5f9;
             --white: #ffffff;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            color: var(--primary);
+            color: #334155;
             background-color: var(--white);
+            line-height: 1.5;
         }
 
-        /* --- HERO SECTION --- */
+        /* --- CABECERA (Ajustada para celular) --- */
         .hero {
-            background: linear-gradient(rgba(26, 35, 47, 0.85), rgba(26, 35, 47, 0.85)), 
-                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070') no-repeat center center/cover;
-            height: 100vh;
+            background: linear-gradient(rgba(26, 35, 47, 0.8), rgba(26, 35, 47, 0.8)), 
+                        url('https://images.unsplash.com/photo-1556740734-7f95626904ff?auto=format&fit=crop&q=80&w=2070') no-repeat center center/cover;
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--white);
-            padding: 0 20px;
+            padding: 40px 20px;
         }
 
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+        .hero h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
             font-weight: 800;
             margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: -1px;
         }
 
-        .hero-content p {
-            font-size: clamp(1.1rem, 2vw, 1.5rem);
-            max-width: 800px;
-            margin: 0 auto 40px;
-            opacity: 0.9;
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            max-width: 650px;
+            margin-bottom: 35px;
         }
 
         .btn-main {
             background-color: var(--secondary);
             color: var(--primary);
-            padding: 18px 35px;
+            padding: 18px 30px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+            display: inline-block;
         }
 
-        .btn-main:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 204, 0, 0.5);
-            background-color: var(--white);
-        }
+        /* --- SECCIONES DIFERENCIADAS --- */
+        section { padding: 80px 20px; }
+        .container { max-width: 1000px; margin: auto; }
 
-        /* --- SECCIÓN PROBLEMA (EL COSTO) --- */
-        .problem {
-            padding: 100px 20px;
-            background-color: var(--light);
-            text-align: center;
-        }
+        /* El Problema */
+        .problem { background-color: var(--bg-light); text-align: center; }
+        .problem h2 { color: var(--accent); margin-bottom: 20px; font-size: 2rem; }
+        .problem p { font-size: 1.1rem; max-width: 700px; margin: auto; }
 
-        .container { max-width: 1100px; margin: auto; }
-
-        .problem h2 { font-size: 2.5rem; margin-bottom: 30px; color: var(--accent); }
-        .problem p { font-size: 1.2rem; max-width: 900px; margin: auto; }
-
-        /* --- PILARES --- */
-        .pillars { padding: 100px 20px; text-align: center; }
-        .pillars h2 { font-size: 2.5rem; margin-bottom: 60px; }
-
+        /* Servicios (Tarjetas) */
+        .pillars h2 { text-align: center; margin-bottom: 50px; font-size: 2rem; }
         .pillar-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
-
         .pillar-item {
             background: var(--white);
-            padding: 40px 30px;
+            padding: 40px 25px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-            border-bottom: 5px solid transparent;
-        }
-
-        .pillar-item:hover {
-            transform: translateY(-10px);
-            border-bottom: 5px solid var(--secondary);
-        }
-
-        .pillar-item i {
-            font-size: 3rem;
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-
-        .pillar-item h3 { margin-bottom: 15px; font-size: 1.5rem; }
-
-        /* --- GARANTÍA --- */
-        .guarantee {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 80px 20px;
             text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
         }
+        .pillar-item i { font-size: 3rem; color: var(--secondary); margin-bottom: 20px; display: block; }
+        .pillar-item h3 { margin-bottom: 15px; color: var(--primary); }
 
-        .guarantee-box {
-            border: 2px solid var(--secondary);
-            padding: 50px;
+        /* Garantía */
+        .guarantee { background-color: var(--primary); color: var(--white); text-align: center; }
+        .guarantee-box { 
+            border: 2px solid var(--secondary); 
+            padding: 40px 20px; 
             border-radius: 20px;
-            display: inline-block;
-            max-width: 800px;
         }
+        .guarantee h2 { color: var(--secondary); margin-bottom: 15px; }
 
-        /* --- BOTÓN WHATSAPP --- */
+        /* WhatsApp */
         .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 25px;
             background-color: #25d366;
             color: white;
             width: 60px;
@@ -147,79 +120,70 @@
             align-items: center;
             justify-content: center;
             font-size: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             z-index: 1000;
-            transition: all 0.3s ease;
         }
 
-        .whatsapp-float:hover { transform: scale(1.1); }
+        footer { padding: 40px; text-align: center; background: #e2e8f0; font-size: 0.9rem; }
 
-        footer {
-            padding: 40px;
-            text-align: center;
-            background: var(--light);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .pillar-grid { grid-template-columns: 1fr; }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            section { padding: 50px 20px; }
         }
     </style>
 </head>
 <body>
 
     <header class="hero">
-        <div class="hero-content">
-            <h1>Impulsa tu Negocio con Estrategia Real</h1>
-            <p>Fusionamos consultoría económica avanzada con soluciones de conectividad para maximizar la rentabilidad de tu empresa en Ecuador.</p>
-            <a href="https://wa.me/593987812178" class="btn-main">OBTENER CONSULTORÍA GRATUITA</a>
-        </div>
+        <h1>¡Haz crecer tu negocio con el mejor internet!</h1>
+        <p>En <strong>EcuSoluciones</strong> te ayudamos a que tu empresa trabaje más rápido y gastes menos a fin de mes.</p>
+        <a href="https://wa.me/593987812178" class="btn-main">¡QUIERO MÁS INFORMACIÓN!</a>
     </header>
 
     <section class="problem">
         <div class="container">
-            <h2>¿Tu empresa está perdiendo dinero?</h2>
-            <p>Como economistas, sabemos que una mala conectividad no es solo un fallo técnico, es una <strong>fuga de capital</strong>. Una infraestructura ineficiente reduce tu productividad en un 15% y bloquea el crecimiento de tus ventas.</p>
+            <h2>¿Tu internet te da problemas?</h2>
+            <p>Sabemos que si el internet falla, dejas de vender. Un mal servicio te hace perder tiempo y clientes. Nosotros estamos aquí para que eso no te pase más.</p>
         </div>
     </section>
 
-    <section class="pillars" id="servicios">
+    <section class="pillars">
         <div class="container">
-            <h2>Nuestros 3 Ejes de Éxito</h2>
+            <h2>¿Cómo te ayudamos?</h2>
             <div class="pillar-grid">
                 <article class="pillar-item">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Consultoría Económica</h3>
-                    <p>Analizamos tus costos operativos para encontrar puntos de ahorro y optimizar tu inversión en tecnología.</p>
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h3>Ahorra en tus facturas</h3>
+                    <p>Revisamos lo que pagas hoy para ver cómo puedes pagar menos por un mejor servicio.</p>
                 </article>
                 <article class="pillar-item">
-                    <i class="fas fa-network-wired"></i>
-                    <h3>Conectividad Corporativa</h3>
-                    <p>Instalación de Fibra Óptica y planes móviles masivos con el respaldo del mayor operador del país.</p>
+                    <i class="fas fa-wifi"></i>
+                    <h3>Internet y Planes</h3>
+                    <p>Te ponemos el mejor internet de fibra y planes de celular de Claro para que siempre estés conectado.</p>
                 </article>
                 <article class="pillar-item">
-                    <i class="fas fa-laptop-code"></i>
-                    <h3>Presencia Digital</h3>
-                    <p>Diseñamos tu identidad online para que tu negocio sea visible, profesional y altamente rentable.</p>
+                    <i class="fas fa-store"></i>
+                    <h3>Tu negocio en internet</h3>
+                    <p>Hacemos que tu negocio se vea profesional en internet para que más gente te encuentre y te compre.</p>
                 </article>
             </div>
         </div>
     </section>
 
     <section class="guarantee">
-        <div class="guarantee-box">
-            <h2>Compromiso EcuSoluciones</h2>
-            <p>No vendemos servicios, entregamos <strong>Retorno de Inversión (ROI)</strong>. Si tu conectividad no mejora tu eficiencia, no hemos cumplido nuestro trabajo.</p>
+        <div class="container">
+            <div class="guarantee-box">
+                <h2>Nuestra Promesa</h2>
+                <p>No te vamos a marear con palabras difíciles. Te acompañamos paso a paso hasta que tu internet vuele y estés feliz con el servicio.</p>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 EcuSoluciones Ecuador. Todos los derechos reservados.</p>
-        <p>Expertos en Ventas Corporativas y Análisis Económico.</p>
+        <p><strong>EcuSoluciones Ecuador - 2026</strong></p>
+        <p>Por Gabriel Hernández | Tu amigo y asesor en tecnología</p>
     </footer>
 
-    <a href="https://wa.me/593987812178" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/593987812178" class="whatsapp-float">
         <i class="fab fa-whatsapp"></i>
     </a>
 
