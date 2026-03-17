@@ -3,189 +3,1551 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>EcuSoluciones | Internet y Planes para tu Negocio</title>
-    <meta name="description" content="Te ayudamos a que tu negocio crezca con el mejor internet y planes de celular en Ecuador. Sencillo y sin vueltas.">
-    
-    <meta property="og:title" content="EcuSoluciones - Tu negocio mejor conectado">
-    <meta property="og:description" content="Ahorra dinero y trabaja mejor con nuestras soluciones de internet y planes.">
-    <meta property="og:image" content="https://i.imgur.com/wGqv4OR.jpeg">
+    <meta name="description" content="EcuSoluciones: Diseño de Landing Pages que convierte visitas en clientes. Consultoría económica y conectividad empresarial en Ecuador.">
+    <title>EcuSoluciones — Landing Pages que Venden</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         :root {
-            --primary: #1a232f;    /* Azul Serio */
-            --secondary: #ffcc00;  /* Amarillo Energía */
-            --accent: #E60000;     /* Rojo Claro */
-            --bg-light: #f1f5f9;
-            --white: #ffffff;
+            --navy:   #080d14;
+            --navy2:  #0e1824;
+            --navy3:  #16243a;
+            --gold:   #c9a84c;
+            --gold2:  #e8c97a;
+            --cream:  #f5f0e8;
+            --white:  #ffffff;
+            --gray:   #8a95a3;
+            --red:    #c0392b;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-ui:      'Syne', sans-serif;
+            --font-body:    'DM Sans', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            color: #334155;
-            background-color: var(--white);
-            line-height: 1.5;
+            font-family: var(--font-body);
+            background: var(--navy);
+            color: var(--white);
+            overflow-x: hidden;
         }
 
-        /* --- CABECERA (Ajustada para celular) --- */
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left  { opacity: 0; transform: translateX(-50px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal-right { opacity: 0; transform: translateX(50px);  transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 22px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+        }
+        nav.scrolled {
+            background: rgba(8, 13, 20, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 16px 60px;
+            border-bottom: 1px solid rgba(201,168,76,0.15);
+        }
+        .nav-logo {
+            font-family: var(--font-ui);
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+        .nav-logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a {
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta {
+            background: var(--gold);
+            color: var(--navy) !important;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 700 !important;
+            transition: background 0.3s, transform 0.2s !important;
+        }
+        .nav-cta:hover { background: var(--gold2) !important; transform: translateY(-1px); }
+
+        /* ===== HERO ===== */
         .hero {
-            background: linear-gradient(rgba(26, 35, 47, 0.8), rgba(26, 35, 47, 0.8)), 
-                        url('https://images.unsplash.com/photo-1556740734-7f95626904ff?auto=format&fit=crop&q=80&w=2070') no-repeat center center/cover;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 120px 20px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 50% at 80% 80%, rgba(201,168,76,0.06) 0%, transparent 60%);
+        }
+        .hero-noise {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+        .hero-label {
+            font-family: var(--font-ui);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: fadeDown 1s ease forwards;
+        }
+        .hero-label::before, .hero-label::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+            opacity: 0.5;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 30px;
+            animation: fadeUp 1s 0.2s ease both;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+        .hero-sub {
+            font-size: clamp(1rem, 1.8vw, 1.25rem);
+            color: rgba(255,255,255,0.65);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            animation: fadeUp 1s 0.4s ease both;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeUp 1s 0.6s ease both;
+        }
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 18px 38px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: var(--font-ui);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 40px rgba(201,168,76,0.25);
+        }
+        .btn-primary:hover {
+            background: var(--gold2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(201,168,76,0.4);
+        }
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,0.25);
             color: var(--white);
-            padding: 40px 20px;
+            padding: 18px 38px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: var(--font-ui);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: rgba(255,255,255,0.3);
+            font-size: 1.3rem;
         }
 
-        .hero h1 {
-            font-size: clamp(2rem, 8vw, 3.5rem);
-            font-weight: 800;
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            background: var(--navy2);
+            border-top: 1px solid rgba(201,168,76,0.1);
+            border-bottom: 1px solid rgba(201,168,76,0.1);
+            padding: 50px 40px;
+        }
+        .stats-grid {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .stat-item { }
+        .stat-num {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+            line-height: 1;
+        }
+        .stat-label {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+            margin-top: 8px;
+            display: block;
+        }
+
+        /* ===== SECTION COMMONS ===== */
+        section { padding: 120px 20px; }
+        .container { max-width: 1100px; margin: auto; }
+        .section-label {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
             margin-bottom: 20px;
         }
-
-        .hero p {
-            font-size: clamp(1rem, 3vw, 1.25rem);
-            max-width: 650px;
-            margin-bottom: 35px;
+        .section-label::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--gold);
         }
-
-        .btn-main {
-            background-color: var(--secondary);
-            color: var(--primary);
-            padding: 18px 30px;
-            border-radius: 50px;
-            text-decoration: none;
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 700;
-            font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
-            display: inline-block;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .section-title em { font-style: italic; color: var(--gold); }
+        .section-desc {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.05rem;
+            line-height: 1.75;
+            max-width: 600px;
         }
 
-        /* --- SECCIONES DIFERENCIADAS --- */
-        section { padding: 80px 20px; }
-        .container { max-width: 1000px; margin: auto; }
-
-        /* El Problema */
-        .problem { background-color: var(--bg-light); text-align: center; }
-        .problem h2 { color: var(--accent); margin-bottom: 20px; font-size: 2rem; }
-        .problem p { font-size: 1.1rem; max-width: 700px; margin: auto; }
-
-        /* Servicios (Tarjetas) */
-        .pillars h2 { text-align: center; margin-bottom: 50px; font-size: 2rem; }
-        .pillar-grid {
+        /* ===== PROBLEM ===== */
+        .problem { background: var(--navy); }
+        .problem-inner {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
         }
-        .pillar-item {
-            background: var(--white);
-            padding: 40px 25px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
+        .problem-list { list-style: none; margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
+        .problem-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            color: rgba(255,255,255,0.75);
+            font-size: 0.98rem;
+            line-height: 1.6;
         }
-        .pillar-item i { font-size: 3rem; color: var(--secondary); margin-bottom: 20px; display: block; }
-        .pillar-item h3 { margin-bottom: 15px; color: var(--primary); }
+        .problem-list li i { color: var(--red); font-size: 1rem; margin-top: 3px; flex-shrink: 0; }
+        .problem-card {
+            background: var(--navy2);
+            border: 1px solid rgba(201,168,76,0.15);
+            border-radius: 16px;
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(201,168,76,0.06) 0%, transparent 60%);
+        }
+        .problem-card-number {
+            font-family: var(--font-display);
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--gold);
+            opacity: 0.15;
+            line-height: 1;
+            margin-bottom: -20px;
+        }
+        .problem-card h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+        .problem-card p { color: rgba(255,255,255,0.65); line-height: 1.7; }
+        .problem-cards { display: flex; flex-direction: column; gap: 20px; }
 
-        /* Garantía */
-        .guarantee { background-color: var(--primary); color: var(--white); text-align: center; }
-        .guarantee-box { 
-            border: 2px solid var(--secondary); 
-            padding: 40px 20px; 
-            border-radius: 20px;
+        /* ===== SERVICES ===== */
+        .services { background: var(--navy2); }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 70px;
+            background: rgba(201,168,76,0.08);
+            border-radius: 16px;
+            overflow: hidden;
         }
-        .guarantee h2 { color: var(--secondary); margin-bottom: 15px; }
-
-        /* WhatsApp */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50px;
+        .service-card {
+            background: var(--navy2);
+            padding: 50px 38px;
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        .service-card:hover { background: var(--navy3); }
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover::after { transform: scaleX(1); }
+        .service-icon {
+            width: 58px;
+            height: 58px;
+            background: rgba(201,168,76,0.1);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
-            z-index: 1000;
+            margin-bottom: 28px;
+            font-size: 1.4rem;
+            color: var(--gold);
+            transition: background 0.3s;
         }
+        .service-card:hover .service-icon { background: rgba(201,168,76,0.2); }
+        .service-card h3 {
+            font-family: var(--font-ui);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .service-card p { color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.7; }
+        .service-list { list-style: none; margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+        .service-list li {
+            color: rgba(255,255,255,0.55);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .service-list li::before { content: '→'; color: var(--gold); }
 
-        footer { padding: 40px; text-align: center; background: #e2e8f0; font-size: 0.9rem; }
+        /* ===== PROCESS ===== */
+        .process { background: var(--navy); }
+        .process-header { text-align: center; max-width: 650px; margin: 0 auto 80px; }
+        .process-header .section-label { justify-content: center; }
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+        }
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent);
+        }
+        .process-step { text-align: center; padding: 0 20px; }
+        .step-num {
+            width: 72px;
+            height: 72px;
+            border: 1px solid rgba(201,168,76,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            background: var(--navy);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+        .process-step:hover .step-num {
+            background: var(--gold);
+            color: var(--navy);
+            border-color: var(--gold);
+        }
+        .process-step h4 {
+            font-family: var(--font-ui);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .process-step p { color: rgba(255,255,255,0.55); font-size: 0.87rem; line-height: 1.65; }
 
+        /* ===== PORTFOLIO ===== */
+        .portfolio { background: var(--navy2); }
+        .portfolio-header { margin-bottom: 60px; }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .portfolio-card {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 4/3;
+            background: var(--navy3);
+            cursor: pointer;
+            border: 1px solid rgba(201,168,76,0.1);
+        }
+        .portfolio-card:first-child { grid-column: span 2; aspect-ratio: unset; min-height: 350px; }
+        .portfolio-mock {
+            position: absolute;
+            inset: 0;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s ease;
+        }
+        .portfolio-card:hover .portfolio-mock { transform: scale(1.02); }
+        .portfolio-mock-nav {
+            height: 32px;
+            background: rgba(255,255,255,0.07);
+            border-radius: 6px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            gap: 8px;
+        }
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .dot.r { background: #ff5f57; }
+        .dot.y { background: #ffbd2e; }
+        .dot.g { background: #28ca41; }
+        .mock-hero { flex: 1; border-radius: 6px; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; position: relative; overflow: hidden; }
+        .mock-h { font-family: var(--font-display); font-weight: 700; line-height: 1.1; margin-bottom: 10px; }
+        .mock-p { font-size: 0.7rem; opacity: 0.7; line-height: 1.5; max-width: 280px; }
+        .mock-btn { display: inline-block; padding: 6px 16px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; margin-top: 12px; }
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(8,13,20,0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            gap: 12px;
+        }
+        .portfolio-card:hover .portfolio-overlay { opacity: 1; }
+        .portfolio-tag {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .portfolio-overlay h4 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        .portfolio-overlay p { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+
+        /* ===== PRICING ===== */
+        .pricing { background: var(--navy); }
+        .pricing-header { text-align: center; max-width: 650px; margin: 0 auto 70px; }
+        .pricing-header .section-label { justify-content: center; }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+        .price-card {
+            background: var(--navy2);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 48px 36px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .price-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        .price-card.featured {
+            background: var(--navy3);
+            border-color: var(--gold);
+            transform: scale(1.04);
+        }
+        .price-card.featured:hover { transform: scale(1.04) translateY(-8px); }
+        .price-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: var(--navy);
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-family: var(--font-ui);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+        }
+        .price-plan {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+        .price-amount {
+            font-family: var(--font-display);
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+        .price-amount sup { font-size: 1.5rem; vertical-align: top; margin-top: 12px; }
+        .price-period { color: var(--gray); font-size: 0.85rem; margin-bottom: 10px; }
+        .price-desc { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.6; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .price-features { list-style: none; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+        .price-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.5;
+        }
+        .price-features li i { color: var(--gold); margin-top: 2px; flex-shrink: 0; }
+        .price-features li.no { color: rgba(255,255,255,0.3); }
+        .price-features li.no i { color: rgba(255,255,255,0.2); }
+        .price-btn {
+            display: block;
+            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: var(--font-ui);
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            margin-top: 32px;
+            transition: all 0.3s ease;
+        }
+        .price-btn-outline {
+            border: 1px solid rgba(201,168,76,0.4);
+            color: var(--gold);
+        }
+        .price-btn-outline:hover { background: rgba(201,168,76,0.1); }
+        .price-btn-filled {
+            background: var(--gold);
+            color: var(--navy);
+        }
+        .price-btn-filled:hover { background: var(--gold2); }
+        .pricing-note {
+            text-align: center;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
+            margin-top: 40px;
+        }
+        .pricing-note a { color: var(--gold); text-decoration: none; }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials { background: var(--navy2); }
+        .testimonials-header { text-align: center; max-width: 600px; margin: 0 auto 70px; }
+        .testimonials-header .section-label { justify-content: center; }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .testimonial-card {
+            background: var(--navy);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: 36px 32px;
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: '"';
+            font-family: var(--font-display);
+            font-size: 6rem;
+            color: var(--gold);
+            opacity: 0.15;
+            position: absolute;
+            top: 10px;
+            left: 24px;
+            line-height: 1;
+        }
+        .stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 16px; letter-spacing: 2px; }
+        .testimonial-text {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.93rem;
+            line-height: 1.75;
+            margin-bottom: 28px;
+            position: relative;
+        }
+        .testimonial-author { display: flex; align-items: center; gap: 14px; }
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--navy3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy);
+            flex-shrink: 0;
+        }
+        .author-name {
+            font-family: var(--font-ui);
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+        .author-role { color: var(--gray); font-size: 0.78rem; margin-top: 2px; }
+
+        /* ===== GUARANTEE ===== */
+        .guarantee-section { background: var(--navy); }
+        .guarantee-inner {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 80px;
+            align-items: center;
+            border: 1px solid rgba(201,168,76,0.2);
+            border-radius: 20px;
+            padding: 70px 80px;
+            background: var(--navy2);
+            position: relative;
+            overflow: hidden;
+        }
+        .guarantee-inner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(201,168,76,0.06) 0%, transparent 60%);
+        }
+        .guarantee-seal {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .guarantee-seal i { font-size: 2rem; color: var(--gold); margin-bottom: 8px; }
+        .guarantee-seal span {
+            font-family: var(--font-ui);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+        }
+        .guarantee-text h2 { font-family: var(--font-display); font-size: 2.8rem; font-weight: 700; margin-bottom: 18px; }
+        .guarantee-text p { color: rgba(255,255,255,0.65); line-height: 1.75; font-size: 1.05rem; max-width: 550px; }
+
+        /* ===== FAQ ===== */
+        .faq { background: var(--navy2); }
+        .faq-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+        .faq-list { display: flex; flex-direction: column; gap: 0; }
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-family: var(--font-ui);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: left;
+            padding: 22px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .faq-question i { color: var(--gold); font-size: 0.8rem; transition: transform 0.3s; flex-shrink: 0; }
+        .faq-item.open .faq-question i { transform: rotate(45deg); }
+        .faq-answer {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            line-height: 1.75;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+        .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 20px; }
+
+        /* ===== FINAL CTA ===== */
+        .final-cta {
+            background: var(--navy);
+            text-align: center;
+            padding: 140px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.1) 0%, transparent 70%);
+        }
+        .final-cta h2 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .final-cta h2 em { font-style: italic; color: var(--gold); }
+        .final-cta p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .final-cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--navy2);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 60px 40px 40px;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: auto;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        .footer-brand p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin: 14px 0 24px;
+            max-width: 280px;
+        }
+        .footer-social { display: flex; gap: 12px; }
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .footer-social a:hover { border-color: var(--gold); color: var(--gold); }
+        .footer-col h5 {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.3s;
+        }
+        .footer-col ul li a:hover { color: var(--white); }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
+
+        /* ===== WHATSAPP ===== */
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .wa-label {
+            background: var(--white);
+            color: var(--navy);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: var(--font-ui);
+            font-size: 0.78rem;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .wa-float:hover .wa-label { opacity: 1; transform: translateX(0); }
+        .wa-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25d366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: pulse-wa 2.5s infinite;
+        }
+        .wa-btn:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp   { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes bounce   { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(10px); } }
+        @keyframes pulse-wa { 0%,100% { box-shadow:0 4px 20px rgba(37,211,102,0.4); } 50% { box-shadow:0 4px 30px rgba(37,211,102,0.7); } }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            nav { padding: 20px 30px; }
+            .nav-links { display: none; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .problem-inner { grid-template-columns: 1fr; gap: 40px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+            .process-steps::before { display: none; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .portfolio-card:first-child { grid-column: span 1; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .price-card.featured { transform: none; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .guarantee-inner { grid-template-columns: 1fr; text-align: center; gap: 30px; padding: 50px 30px; }
+            .guarantee-seal { margin: auto; }
+            .guarantee-text p { margin: 0 auto; }
+            .faq-inner { grid-template-columns: 1fr; gap: 40px; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: 30px; }
+        }
         @media (max-width: 600px) {
-            .hero h1 { font-size: 1.8rem; }
-            section { padding: 50px 20px; }
+            section { padding: 80px 20px; }
+            .footer-top { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ===== NAVBAR ===== -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">Ecu<span>Soluciones</span></a>
+        <ul class="nav-links">
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#proceso">Proceso</a></li>
+            <li><a href="#portafolio">Portafolio</a></li>
+            <li><a href="#precios">Precios</a></li>
+            <li><a href="https://wa.me/593987812178" class="nav-cta" target="_blank">Consulta Gratis</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== HERO ===== -->
     <header class="hero">
-        <h1>¡Haz crecer tu negocio con el mejor internet!</h1>
-        <p>En <strong>EcuSoluciones</strong> te ayudamos a que tu empresa trabaje más rápido y gastes menos a fin de mes.</p>
-        <a href="https://wa.me/593987812178" class="btn-main">¡QUIERO MÁS INFORMACIÓN!</a>
+        <div class="hero-noise"></div>
+        <div class="hero-label">Especialistas en Landing Pages · Ecuador</div>
+        <h1>Tu página web<br>que <em>convierte</em><br>visitas en clientes</h1>
+        <p class="hero-sub">Diseñamos landing pages de alto impacto que generan resultados reales. Desde consultoría económica hasta presencia digital profesional — todo en un solo lugar.</p>
+        <div class="hero-btns">
+            <a href="https://wa.me/593987812178" class="btn-primary" target="_blank">Consulta Gratis por WhatsApp</a>
+            <a href="#portafolio" class="btn-secondary">Ver Ejemplos</a>
+        </div>
+        <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
     </header>
 
+    <!-- ===== STATS ===== -->
+    <div class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item reveal delay-1">
+                <span class="stat-num">+50</span>
+                <span class="stat-label">Proyectos Entregados</span>
+            </div>
+            <div class="stat-item reveal delay-2">
+                <span class="stat-num">3×</span>
+                <span class="stat-label">ROI Promedio de Clientes</span>
+            </div>
+            <div class="stat-item reveal delay-3">
+                <span class="stat-num">72h</span>
+                <span class="stat-label">Tiempo de Entrega</span>
+            </div>
+            <div class="stat-item reveal delay-4">
+                <span class="stat-num">100%</span>
+                <span class="stat-label">Satisfacción Garantizada</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PROBLEM ===== -->
     <section class="problem">
         <div class="container">
-            <h2>¿Tu internet te da problemas?</h2>
-            <p>Sabemos que si el internet falla, dejas de vender. Un mal servicio te hace perder tiempo y clientes. Nosotros estamos aquí para que eso no te pase más.</p>
-        </div>
-    </section>
-
-    <section class="pillars">
-        <div class="container">
-            <h2>¿Cómo te ayudamos?</h2>
-            <div class="pillar-grid">
-                <article class="pillar-item">
-                    <i class="fas fa-hand-holding-usd"></i>
-                    <h3>Ahorra en tus facturas</h3>
-                    <p>Revisamos lo que pagas hoy para ver cómo puedes pagar menos por un mejor servicio.</p>
-                </article>
-                <article class="pillar-item">
-                    <i class="fas fa-wifi"></i>
-                    <h3>Internet y Planes</h3>
-                    <p>Te ponemos el mejor internet de fibra y planes de celular de Claro para que siempre estés conectado.</p>
-                </article>
-                <article class="pillar-item">
-                    <i class="fas fa-store"></i>
-                    <h3>Tu negocio en internet</h3>
-                    <p>Hacemos que tu negocio se vea profesional en internet para que más gente te encuentre y te compre.</p>
-                </article>
+            <div class="problem-inner">
+                <div class="reveal-left">
+                    <div class="section-label">El Problema</div>
+                    <h2 class="section-title">Tu negocio <em>pierde dinero</em> sin una web que funcione</h2>
+                    <ul class="problem-list">
+                        <li><i class="fas fa-times-circle"></i> Tienes redes sociales pero los clientes no confían sin una web profesional</li>
+                        <li><i class="fas fa-times-circle"></i> Tu web actual no aparece en Google ni convierte visitas en ventas</li>
+                        <li><i class="fas fa-times-circle"></i> Tu competencia tiene mejor presencia digital y se lleva tus clientes</li>
+                        <li><i class="fas fa-times-circle"></i> Pagas publicidad pero la landing page no está optimizada para convertir</li>
+                        <li><i class="fas fa-times-circle"></i> No sabes cuánto dinero estás dejando ir cada mes</li>
+                    </ul>
+                </div>
+                <div class="reveal-right">
+                    <div class="problem-cards">
+                        <div class="problem-card">
+                            <div class="problem-card-number">15%</div>
+                            <h3>Pérdida de productividad</h3>
+                            <p>Las empresas sin infraestructura digital óptima pierden hasta un 15% de su productividad anual. Eso es dinero real que sale de tu bolsillo.</p>
+                        </div>
+                        <div class="problem-card">
+                            <div class="problem-card-number">68%</div>
+                            <h3>Clientes que se van</h3>
+                            <p>El 68% de los usuarios abandona un sitio web en menos de 5 segundos si no les genera confianza. Tu primera impresión lo es todo.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="guarantee">
+    <!-- ===== SERVICES ===== -->
+    <section class="services" id="servicios">
         <div class="container">
-            <div class="guarantee-box">
-                <h2>Nuestra Promesa</h2>
-                <p>No te vamos a marear con palabras difíciles. Te acompañamos paso a paso hasta que tu internet vuele y estés feliz con el servicio.</p>
+            <div class="reveal">
+                <div class="section-label">Nuestros Servicios</div>
+                <h2 class="section-title">Todo lo que tu empresa<br><em>necesita</em> para crecer</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal delay-1">
+                    <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Landing Pages de Alta Conversión</h3>
+                    <p>Páginas diseñadas con una sola meta: convertir visitantes en clientes. Cada elemento está estratégicamente pensado.</p>
+                    <ul class="service-list">
+                        <li>Diseño personalizado y profesional</li>
+                        <li>Optimización para móviles (100%)</li>
+                        <li>Velocidad de carga ultra rápida</li>
+                        <li>Formularios y botones de acción</li>
+                        <li>Integración con WhatsApp</li>
+                    </ul>
+                </div>
+                <div class="service-card reveal delay-2">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Consultoría Económica Empresarial</h3>
+                    <p>Como economistas analizamos tus costos, encontramos fugas de capital y diseñamos estrategias de rentabilidad real.</p>
+                    <ul class="service-list">
+                        <li>Análisis de costos operativos</li>
+                        <li>Estrategia de inversión en tecnología</li>
+                        <li>Optimización de presupuesto digital</li>
+                        <li>Proyecciones de ROI</li>
+                        <li>Reportes ejecutivos mensuales</li>
+                    </ul>
+                </div>
+                <div class="service-card reveal delay-3">
+                    <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Conectividad Corporativa</h3>
+                    <p>Instalación de Fibra Óptica y planes móviles masivos con el mayor operador del país. Infraestructura que escala con tu empresa.</p>
+                    <ul class="service-list">
+                        <li>Fibra óptica empresarial</li>
+                        <li>Planes móviles corporativos</li>
+                        <li>Soporte técnico 24/7</li>
+                        <li>SLA garantizado</li>
+                        <li>Consultoría de infraestructura</li>
+                    </ul>
+                </div>
+                <div class="service-card reveal delay-4">
+                    <div class="service-icon"><i class="fas fa-search"></i></div>
+                    <h3>Posicionamiento SEO Local</h3>
+                    <p>Aparece en Google cuando tus clientes buscan lo que vendes. Domina los resultados locales en Ecuador.</p>
+                    <ul class="service-list">
+                        <li>Optimización On-Page completa</li>
+                        <li>Google My Business</li>
+                        <li>Keywords estratégicas</li>
+                        <li>Contenido optimizado</li>
+                    </ul>
+                </div>
+                <div class="service-card reveal delay-5">
+                    <div class="service-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Páginas de Captación de Leads</h3>
+                    <p>Sistemas completos para capturar datos de clientes potenciales y alimentar tu embudo de ventas automáticamente.</p>
+                    <ul class="service-list">
+                        <li>Formularios de captura</li>
+                        <li>Integración con CRM</li>
+                        <li>Email marketing automatizado</li>
+                        <li>Seguimiento de conversiones</li>
+                    </ul>
+                </div>
+                <div class="service-card reveal delay-1">
+                    <div class="service-icon"><i class="fas fa-palette"></i></div>
+                    <h3>Branding e Identidad Visual</h3>
+                    <p>Tu marca debe comunicar profesionalismo antes de que lean una sola palabra. Creamos identidades que generan confianza.</p>
+                    <ul class="service-list">
+                        <li>Diseño de logo profesional</li>
+                        <li>Paleta de colores y tipografía</li>
+                        <li>Manual de marca</li>
+                        <li>Materiales digitales</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- ===== PROCESS ===== -->
+    <section class="process" id="proceso">
+        <div class="container">
+            <div class="process-header reveal">
+                <div class="section-label">Cómo Trabajamos</div>
+                <h2 class="section-title">De cero a cliente<br>en <em>4 pasos simples</em></h2>
+            </div>
+            <div class="process-steps">
+                <div class="process-step reveal delay-1">
+                    <div class="step-num">01</div>
+                    <h4>Consulta Gratuita</h4>
+                    <p>Hablamos por WhatsApp o videollamada para entender tu negocio, tus metas y qué necesitas exactamente.</p>
+                </div>
+                <div class="process-step reveal delay-2">
+                    <div class="step-num">02</div>
+                    <h4>Propuesta & Estrategia</h4>
+                    <p>En 24 horas te enviamos una propuesta personalizada con el plan de trabajo y el precio final sin sorpresas.</p>
+                </div>
+                <div class="process-step reveal delay-3">
+                    <div class="step-num">03</div>
+                    <h4>Diseño & Desarrollo</h4>
+                    <p>Creamos tu landing page o proyecto en máximo 72 horas, con revisiones incluidas hasta que quedes 100% satisfecho.</p>
+                </div>
+                <div class="process-step reveal delay-4">
+                    <div class="step-num">04</div>
+                    <h4>Lanzamiento & Soporte</h4>
+                    <p>Publicamos tu proyecto, te capacitamos y te acompañamos durante los primeros 30 días para optimizar resultados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PORTFOLIO ===== -->
+    <section class="portfolio" id="portafolio">
+        <div class="container">
+            <div class="portfolio-header reveal">
+                <div class="section-label">Nuestro Trabajo</div>
+                <h2 class="section-title">Páginas que <em>venden</em><br>de verdad</h2>
+                <p class="section-desc">Cada proyecto es único, pensado para el negocio específico y diseñado para convertir. Estos son algunos ejemplos de nuestros diseños.</p>
+            </div>
+            <div class="portfolio-grid">
+
+                <!-- Card 1 - Large -->
+                <div class="portfolio-card reveal delay-1">
+                    <div class="portfolio-mock">
+                        <div class="portfolio-mock-nav">
+                            <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+                        </div>
+                        <div class="mock-hero" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+                            <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 80% 20%, rgba(255,200,0,0.15),transparent 60%);"></div>
+                            <div class="mock-h" style="font-size:1.6rem;color:#fff;">Clínica Dental<br><span style="color:#ffd700;">Premium</span></div>
+                            <div class="mock-p" style="color:rgba(255,255,255,0.7);">Tu sonrisa perfecta empieza aquí. Tratamientos de alta calidad con tecnología de punta en Quito.</div>
+                            <div class="mock-btn" style="background:#ffd700;color:#1a1a2e;">Agenda tu cita →</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Salud & Bienestar</span>
+                        <h4>Landing Page Clínica Dental</h4>
+                        <p>+340% de citas agendadas online</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="portfolio-card reveal delay-2">
+                    <div class="portfolio-mock">
+                        <div class="portfolio-mock-nav">
+                            <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+                        </div>
+                        <div class="mock-hero" style="background: linear-gradient(160deg, #0d4f3c, #1a7a5a);">
+                            <div class="mock-h" style="font-size:1.3rem;color:#fff;">Restaurante<br><span style="color:#90ee90;">La Hacienda</span></div>
+                            <div class="mock-p" style="color:rgba(255,255,255,0.75);">Reserva tu mesa hoy</div>
+                            <div class="mock-btn" style="background:#90ee90;color:#0d4f3c;">Ver Menú</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Gastronomía</span>
+                        <h4>Restaurante Gourmet</h4>
+                        <p>+200% reservas online</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="portfolio-card reveal delay-3">
+                    <div class="portfolio-mock">
+                        <div class="portfolio-mock-nav">
+                            <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+                        </div>
+                        <div class="mock-hero" style="background: linear-gradient(135deg, #1c0a3c, #3d1569);">
+                            <div class="mock-h" style="font-size:1.3rem;color:#fff;">Academia<br><span style="color:#da70d6;">Online Pro</span></div>
+                            <div class="mock-p" style="color:rgba(255,255,255,0.75);">Aprende desde casa</div>
+                            <div class="mock-btn" style="background:#da70d6;color:#1c0a3c;">Inscríbete</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Educación</span>
+                        <h4>Academia Online</h4>
+                        <p>+150% inscripciones</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="portfolio-card reveal delay-4">
+                    <div class="portfolio-mock">
+                        <div class="portfolio-mock-nav">
+                            <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+                        </div>
+                        <div class="mock-hero" style="background: linear-gradient(135deg, #1a0a00, #4a1800);">
+                            <div class="mock-h" style="font-size:1.3rem;color:#fff;">Inmobiliaria<br><span style="color:#ff8c00;">Capital</span></div>
+                            <div class="mock-p" style="color:rgba(255,255,255,0.75);">Encuentra tu propiedad ideal</div>
+                            <div class="mock-btn" style="background:#ff8c00;color:#1a0a00;">Ver Propiedades</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Inmobiliaria</span>
+                        <h4>Agencia de Bienes Raíces</h4>
+                        <p>+280% leads calificados</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="portfolio-card reveal delay-5">
+                    <div class="portfolio-mock">
+                        <div class="portfolio-mock-nav">
+                            <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+                        </div>
+                        <div class="mock-hero" style="background: linear-gradient(135deg, #001533, #003080);">
+                            <div class="mock-h" style="font-size:1.3rem;color:#fff;">Gym & Fitness<br><span style="color:#00cfff;">Elite</span></div>
+                            <div class="mock-p" style="color:rgba(255,255,255,0.75);">Transforma tu cuerpo</div>
+                            <div class="mock-btn" style="background:#00cfff;color:#001533;">Prueba Gratis</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Fitness & Salud</span>
+                        <h4>Gym Corporativo</h4>
+                        <p>+400% membresías nuevas</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRICING ===== -->
+    <section class="pricing" id="precios">
+        <div class="container">
+            <div class="pricing-header reveal">
+                <div class="section-label">Planes & Precios</div>
+                <h2 class="section-title">Inversión clara,<br>resultados <em>garantizados</em></h2>
+                <p class="section-desc" style="margin:auto;text-align:center;">Sin costos ocultos. Sin contratos eternos. Pagas una vez y la página es tuya para siempre.</p>
+            </div>
+            <div class="pricing-grid">
+
+                <!-- STARTER -->
+                <div class="price-card reveal delay-1">
+                    <div class="price-plan">Starter</div>
+                    <div class="price-amount"><sup>$</sup>149</div>
+                    <div class="price-period">pago único</div>
+                    <p class="price-desc">Perfecto para emprendedores y pequeños negocios que necesitan presencia online rápido y profesional.</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> Landing page de 1 sección principal</li>
+                        <li><i class="fas fa-check"></i> Diseño responsive (móvil + desktop)</li>
+                        <li><i class="fas fa-check"></i> Botón de WhatsApp integrado</li>
+                        <li><i class="fas fa-check"></i> Formulario de contacto</li>
+                        <li><i class="fas fa-check"></i> 1 ronda de revisiones</li>
+                        <li><i class="fas fa-check"></i> Entrega en 48 horas</li>
+                        <li class="no"><i class="fas fa-times"></i> SEO avanzado</li>
+                        <li class="no"><i class="fas fa-times"></i> Soporte post-entrega</li>
+                    </ul>
+                    <a href="https://wa.me/593987812178?text=Hola, me interesa el plan Starter de $149" class="price-btn price-btn-outline" target="_blank">Empezar Ahora</a>
+                </div>
+
+                <!-- PRO - Featured -->
+                <div class="price-card featured reveal delay-2">
+                    <div class="price-badge">⭐ Más Popular</div>
+                    <div class="price-plan">Pro</div>
+                    <div class="price-amount"><sup>$</sup>299</div>
+                    <div class="price-period">pago único</div>
+                    <p class="price-desc">El plan elegido por la mayoría de nuestros clientes. Diseño completo, SEO y soporte incluido para que empieces a vender desde el día uno.</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> Landing page completa (todas las secciones)</li>
+                        <li><i class="fas fa-check"></i> Diseño premium personalizado</li>
+                        <li><i class="fas fa-check"></i> SEO básico optimizado</li>
+                        <li><i class="fas fa-check"></i> Integración Google Analytics</li>
+                        <li><i class="fas fa-check"></i> WhatsApp + formulario avanzado</li>
+                        <li><i class="fas fa-check"></i> 3 rondas de revisiones</li>
+                        <li><i class="fas fa-check"></i> Entrega en 72 horas</li>
+                        <li><i class="fas fa-check"></i> Soporte 30 días post-entrega</li>
+                    </ul>
+                    <a href="https://wa.me/593987812178?text=Hola, me interesa el plan Pro de $299" class="price-btn price-btn-filled" target="_blank">Lo Quiero Ahora</a>
+                </div>
+
+                <!-- ENTERPRISE -->
+                <div class="price-card reveal delay-3">
+                    <div class="price-plan">Enterprise</div>
+                    <div class="price-amount"><sup>$</sup>549</div>
+                    <div class="price-period">pago único</div>
+                    <p class="price-desc">Solución completa para empresas que necesitan impacto máximo, estrategia avanzada y presencia digital total.</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> Todo lo del plan Pro</li>
+                        <li><i class="fas fa-check"></i> Consultoría económica incluida</li>
+                        <li><i class="fas fa-check"></i> SEO avanzado + palabras clave</li>
+                        <li><i class="fas fa-check"></i> Branding completo (logo + colores)</li>
+                        <li><i class="fas fa-check"></i> Blog integrado</li>
+                        <li><i class="fas fa-check"></i> Revisiones ilimitadas</li>
+                        <li><i class="fas fa-check"></i> Soporte 90 días post-entrega</li>
+                        <li><i class="fas fa-check"></i> Capacitación personalizada</li>
+                    </ul>
+                    <a href="https://wa.me/593987812178?text=Hola, me interesa el plan Enterprise de $549" class="price-btn price-btn-outline" target="_blank">Solicitar Propuesta</a>
+                </div>
+
+            </div>
+            <p class="pricing-note reveal">¿Necesitas algo diferente? <a href="https://wa.me/593987812178" target="_blank">Hablemos y creamos un plan a tu medida →</a></p>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="testimonials-header reveal">
+                <div class="section-label">Testimonios</div>
+                <h2 class="section-title">Lo que dicen<br>nuestros <em>clientes</em></h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal delay-1">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">En menos de una semana ya tenía clientes escribiéndome por la web. EcuSoluciones no solo diseñó la página, me asesoraron en toda la estrategia. El ROI fue increíble desde el primer mes.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div>
+                            <div class="author-name">María Rodríguez</div>
+                            <div class="author-role">Clínica Estética · Quito</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal delay-2">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">Tenía una web antigua que no servía para nada. Ahora el 60% de mis reservas llegan por internet. El diseño es profesional y la página carga rapidísimo. Mejor inversión que he hecho.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">CA</div>
+                        <div>
+                            <div class="author-name">Carlos Andrade</div>
+                            <div class="author-role">Restaurante · Guayaquil</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal delay-3">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">Me explicaron todo como economistas, no solo como diseñadores. Entendí exactamente cuánto iba a ganar y cómo. Cumplieron cada promesa y el soporte postventa fue excepcional.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LP</div>
+                        <div>
+                            <div class="author-name">Laura Paredes</div>
+                            <div class="author-role">Academia Online · Cuenca</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GUARANTEE ===== -->
+    <section class="guarantee-section">
+        <div class="container">
+            <div class="guarantee-inner reveal">
+                <div class="guarantee-seal">
+                    <i class="fas fa-shield-halved"></i>
+                    <span>Garantía<br>100%</span>
+                </div>
+                <div class="guarantee-text">
+                    <h2>Si no quedas satisfecho,<br>te <em>devolvemos</em> tu dinero</h2>
+                    <p>Trabajamos con un compromiso total hacia tus resultados. Si la landing page entregada no cumple con lo acordado en la propuesta, te reembolsamos el 100% de tu inversión. Sin preguntas, sin complicaciones. Así de seguros estamos de nuestro trabajo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="faq">
+        <div class="container">
+            <div class="faq-inner">
+                <div class="reveal">
+                    <div class="section-label">Preguntas Frecuentes</div>
+                    <h2 class="section-title">Todo lo que<br>necesitas <em>saber</em></h2>
+                    <p class="section-desc" style="margin-top:20px;">¿Tienes otra pregunta? Escríbenos directamente y te respondemos en minutos.</p>
+                    <a href="https://wa.me/593987812178" class="btn-primary" style="display:inline-block;margin-top:30px;" target="_blank">Preguntar por WhatsApp</a>
+                </div>
+                <div class="faq-list reveal delay-2">
+                    <div class="faq-item">
+                        <button class="faq-question">¿Cuánto tiempo demora hacer mi landing page? <i class="fas fa-plus"></i></button>
+                        <div class="faq-answer">El plan Starter se entrega en 48 horas, el Pro en 72 horas y el Enterprise en 5-7 días. Una vez aprobada la propuesta, comenzamos de inmediato.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">¿La página quedará en mis manos? <i class="fas fa-plus"></i></button>
+                        <div class="faq-answer">Sí, 100%. El diseño, el código y el dominio son tuyos. Nosotros solo te ayudamos a crearlo. Sin contratos de permanencia ni costos recurrentes ocultos.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">¿Necesito tener un dominio o hosting? <i class="fas fa-plus"></i></button>
+                        <div class="faq-answer">No es necesario. Podemos ayudarte a conseguir tu dominio y hosting al mejor precio, o trabajar con los que ya tienes. Lo manejamos todo por ti.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">¿Puedo pagar en cuotas? <i class="fas fa-plus"></i></button>
+                        <div class="faq-answer">Sí, aceptamos el 50% al inicio y el 50% al finalizar el proyecto. También evaluamos otras formas de pago según el caso. Hablemos y nos adaptamos.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">¿Hacen páginas para cualquier tipo de negocio? <i class="fas fa-plus"></i></button>
+                        <div class="faq-answer">Absolutamente. Trabajamos con restaurantes, clínicas, academias, consultoras, tiendas, gimnasios, inmobiliarias y todo tipo de empresa. Cada diseño es único.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">¿Ofrecen mantenimiento después de la entrega? <i class="fas fa-plus"></i></button>
+                        <div class="faq-answer">Los planes Pro y Enterprise incluyen soporte post-entrega de 30 y 90 días respectivamente. También ofrecemos planes de mantenimiento mensual opcionales.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="final-cta">
+        <h2>¿Listo para que tu<br>negocio <em>despegue</em>?</h2>
+        <p>La consulta es gratuita y sin compromiso. Hablemos hoy y en 24 horas tienes tu propuesta lista.</p>
+        <div class="final-cta-btns">
+            <a href="https://wa.me/593987812178?text=Hola, quiero una consulta gratuita para mi landing page" class="btn-primary" target="_blank"><i class="fab fa-whatsapp" style="margin-right:8px;"></i>Quiero mi Consulta Gratis</a>
+            <a href="#precios" class="btn-secondary">Ver Planes</a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
     <footer>
-        <p><strong>EcuSoluciones Ecuador - 2026</strong></p>
-        <p>Por Gabriel Hernández | Tu amigo y asesor en tecnología</p>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo" style="font-size:1.4rem;">Ecu<span>Soluciones</span></a>
+                    <p>Diseñamos landing pages que convierten visitas en clientes. Consultoría económica y conectividad para empresas en Ecuador.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/593987812178" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Servicios</h5>
+                    <ul>
+                        <li><a href="#servicios">Landing Pages</a></li>
+                        <li><a href="#servicios">Consultoría Económica</a></li>
+                        <li><a href="#servicios">Conectividad Empresarial</a></li>
+                        <li><a href="#servicios">SEO Local</a></li>
+                        <li><a href="#servicios">Branding</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Empresa</h5>
+                    <ul>
+                        <li><a href="#proceso">Cómo Trabajamos</a></li>
+                        <li><a href="#portafolio">Portafolio</a></li>
+                        <li><a href="#precios">Precios</a></li>
+                        <li><a href="#faq">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Contacto</h5>
+                    <ul>
+                        <li><a href="https://wa.me/593987812178" target="_blank"><i class="fab fa-whatsapp" style="color:var(--gold);margin-right:6px;"></i>+593 98 781 2178</a></li>
+                        <li><a href="#">Quito, Ecuador</a></li>
+                        <li><a href="https://wa.me/593987812178" target="_blank">Consulta Gratuita →</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 EcuSoluciones Ecuador — Todos los derechos reservados.</p>
+                <p style="color:rgba(255,255,255,0.2);">Diseñado con ♥ en Ecuador</p>
+            </div>
+        </div>
     </footer>
 
-    <a href="https://wa.me/593987812178" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- ===== WHATSAPP FLOAT ===== -->
+    <div class="wa-float">
+        <span class="wa-label">¡Hablemos ahora!</span>
+        <a href="https://wa.me/593987812178" class="wa-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- ===== JS ===== -->
+    <script>
+        // Navbar scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+
+        // Counter animation
+        function animateCounter(el, target, suffix) {
+            let start = 0;
+            const duration = 2000;
+            const step = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += step;
+                if (start >= target) { start = target; clearInterval(timer); }
+                el.textContent = (suffix === '+' ? '+' : '') + Math.floor(start) + (suffix !== '+' ? suffix : '');
+            }, 16);
+        }
+
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const nums = document.querySelectorAll('.stat-num');
+                    animateCounter(nums[0], 50, '+');
+                    animateCounter(nums[1], 3, '×');
+                    // 72h and 100% handled separately
+                    statObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsBar = document.querySelector('.stats-bar');
+        if (statsBar) statObserver.observe(statsBar);
+    </script>
 
 </body>
 </html>
