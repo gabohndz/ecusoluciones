@@ -90,8 +90,10 @@ body {
 }
 
 /* ===== LANGUAGE TOGGLE ===== */
-[data-lang="en"] [data-es] { display: none; }
-[data-lang="es"] [data-en] { display: none; }
+/* Elements with ONLY one language attribute are hidden in the other language */
+[data-lang="en"] [data-es]:not([data-en]) { display: none; }
+[data-lang="es"] [data-en]:not([data-es]) { display: none; }
+/* Bilingual elements with both attributes get their content swapped via JS */
 
 /* ===== REVEAL ===== */
 .reveal {
@@ -1402,9 +1404,13 @@ function setLang(lang) {
   html.lang = lang;
   langBtns.forEach(b => b.classList.toggle('active', b.dataset.langBtn === lang));
   localStorage.setItem('ecuso-lang', lang);
-  // Update hreflang for canonical
+  // Update canonical
   const canon = document.querySelector('link[rel="canonical"]');
   if (canon) canon.href = 'https://ecusoluciones.com/' + (lang === 'en' ? 'en' : '');
+  // Swap content for bilingual elements (have both data-es and data-en)
+  document.querySelectorAll('[data-es][data-en]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + lang);
+  });
 }
 
 langBtns.forEach(btn => {
